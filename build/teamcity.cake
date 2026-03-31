@@ -147,6 +147,7 @@ public class TeamCityRepositoryInfo : IRepositoryInfo
                             foreach (var standardErrorLine in standardErrorLines)
                             {
                                 context.Information(standardErrorLine);
+                            }
                         }
                     }
                 }
