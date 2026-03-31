@@ -131,6 +131,10 @@ public class TeamCityRepositoryInfo : IRepositoryInfo
                                     context.Information(line);
                                 }
                             }
+                            else
+                            {
+                                context.Information("No branches contain the tag {0}, using the tag name as the branch name...", tempName);
+                            }
                         }
                         else
                         {
