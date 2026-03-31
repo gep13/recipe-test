@@ -44,6 +44,12 @@ public class TeamCityTagInfo : ITagInfo
             {
                 IsTag = true;
                 Name = outputLines.FirstOrDefault();
+
+                context.Information("Command output:");
+                foreach(var line in outputLines)
+                {
+                    context.Information(line);
+                }
             }
         }
     }
@@ -59,7 +65,10 @@ public class TeamCityRepositoryInfo : IRepositoryInfo
     {
         Name = teamCity.Environment.Build.BuildConfName;
 
-        var baseRef = context.BuildSystem().GitHubActions.Environment.Workflow.BaseRef;
+        string baseRef = null;
+        context.Information("BuildConfName is {0}", context.BuildSystem().TeamCity.Environment.Build.BuildConfName);
+        context.Information("BuildNumber is {0}", context.BuildSystem().TeamCity.Environment.Build.Number);
+
         if (!string.IsNullOrEmpty(baseRef))
         {
             Branch = baseRef;
@@ -69,6 +78,8 @@ public class TeamCityRepositoryInfo : IRepositoryInfo
             // This trimming is not perfect, as it will remove part of a
             // branch name if the branch name itself contains a '/'
             var tempName = context.Environment.GetEnvironmentVariable("Git_Branch");
+
+            context.Information("Git_Branch is {0}", tempName);
 
             const string headPrefix = "refs/heads/";
             const string tagPrefix = "refs/tags/";
@@ -109,6 +120,12 @@ public class TeamCityRepositoryInfo : IRepositoryInfo
                             if (lines.Count != 0)
                             {
                                 tempName = lines[0].TrimStart(new []{ ' ', '*' }).Replace("origin/", string.Empty);
+
+                                context.Information("Command output:");
+                                foreach(var line in lines)
+                                {
+                                    context.Information(line);
+                                }
                             }
                         }
                     }
@@ -119,6 +136,7 @@ public class TeamCityRepositoryInfo : IRepositoryInfo
                 }
             }
 
+            context.Information("Branch name is {0}", tempName);
             Branch = tempName;
         }
 
