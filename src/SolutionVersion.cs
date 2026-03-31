@@ -12,7 +12,7 @@ using System;
 [assembly: AssemblyProduct("Chocolatey")]
 [assembly: AssemblyVersion("2.0.0.0")]
 [assembly: AssemblyFileVersion("2.0.0.0")]
-[assembly: AssemblyInformationalVersion("2.0.0-alpha-20260331-27870be5")]
+[assembly: AssemblyInformationalVersion("2.0.0--20260331-48892e07")]
 [assembly: AssemblyCopyright("Copyright © 2017 - 2026 Chocolatey Software, Inc. Copyright © 2011 - 2017, RealDimensions Software, LLC - All Rights Reserved.")]
 [assembly: AssemblyTrademark("Chocolatey - Chocolatey Software, Inc.")]
 [assembly: ComVisible(false)]
